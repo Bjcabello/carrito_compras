@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}
+    Mi Tienda en Línea
+{% endblock %}
+{% block content %}
+{% load static %}
+
+<div class="container">
+    <div class="container-title mt-5">
+        <div class="card-title card">
+            <h1 class="title">TIENDA</h1>
+            <h1 class="title">TIENDA</h1>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="text-center">Productos</h2>
+                <!-- Itera sobre los productos y muestra la información -->
+                {% for producto in productos %}
+                <div class="card mb-2">
+                    <h5 class="card-title text-center">{{ producto.nombre }}</h5>
+                    <img src="{{producto.image.url}}" alt="" class="img-fluid d-block mx-auto w-25 h-3">
+                    <p class="card-text">{{ producto.categoria }}</p>
+                    <p class="card-text">{{ producto.precio }}</p>
+                    <a href="{% url 'CarritoApp:add' producto.id %}" class="btn btn-primary">Agregar al Carrito</a>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
+                <h2 class="text-center">Carrito</h2>
+                {% include "carro.html" %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
